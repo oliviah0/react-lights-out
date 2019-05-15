@@ -50,20 +50,14 @@ class Board extends Component {
   /** create a board nrows high/ncols wide, each cell randomly lit or unlit */
 
   _createBoard() {
-    let board = [];
+    //row
+    let board = Array.from(
+      {length: this.props.nrows}, () => (
+        //col
+        Array.from({length: this.props.ncols}, () => ( 
+          //cell
+          Math.random() < this.props.chanceLightStartsOn ))));
 
-    //rows
-    for (let i = 0; i < this.props.nrows; i++) {
-      let row = [];
-
-      //cols
-      for (let j = 0; j < this.props.ncols; j++) {
-        let cell = Math.random() < this.props.chanceLightStartsOn ? true : false;
-        row.push(cell);
-      }
-
-      board.push(row);
-    }
     return board;
   }
 
@@ -100,7 +94,6 @@ class Board extends Component {
 
 
   /** Render game board or winning message. */
-
   render() {
     let { board } = this.state;
 
